@@ -20,8 +20,8 @@ router.delete('/deletUser/:userId', verify, async (req, res) => {
 		}
 	} catch (err) {
 		res.status(400).json({
-			results: null,
-			message: 'Failed to get the data'
+			results: err,
+			message: err.message
 		});
 	}
 });
@@ -46,8 +46,8 @@ router.put('/updateUser/:userId/:adminId', verify, async (req, res) => {
 		}
 	} catch (err) {
 		res.status(400).json({
-			results: null,
-			message: 'Failed to get the data'
+			results: err,
+			message: err.message
 		});
 	}
 });

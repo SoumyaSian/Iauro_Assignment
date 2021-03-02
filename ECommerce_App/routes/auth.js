@@ -34,8 +34,8 @@ router.post('/signup', async (req, res) => {
 		});
 	} catch (err) {
 		res.status(400).json({
-			results: null,
-			message: 'Internal Server Error'
+			results: err,
+			message: err.message
 		});
 	}
 });
@@ -60,8 +60,8 @@ router.post('/signin', async (req, res) => {
 		res.header('Authorization', token).json({ results: token, message: 'Successfully Logged In' });
 	} catch (err) {
 		res.status(400).json({
-			results: null,
-			message: 'Internal Server Error'
+			results: err,
+			message: err.message
 		});
 	}
 });

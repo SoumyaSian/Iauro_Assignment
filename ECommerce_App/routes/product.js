@@ -27,8 +27,8 @@ router.post('/addProduct', verify, async (req, res) => {
 		});
 	} catch (err) {
 		res.status(400).json({
-			results: null,
-			message: 'Failed to add a product'
+			results: err,
+			message: err.message
 		});
 	}
 });
@@ -42,8 +42,8 @@ router.get('/allProducts', verify, async (req, res) => {
 		});
 	} catch (err) {
 		res.status(400).json({
-			results: null,
-			message: 'Failed to get data'
+			results: err,
+			message: err.message
 		});
 	}
 });
@@ -86,8 +86,8 @@ router.put('/update/:productId', verify, async (req, res) => {
 		}
 	} catch (err) {
 		res.status(400).json({
-			results: null,
-			message: 'Failed to get data'
+			results: err,
+			message: err.message
 		});
 	}
 });
@@ -129,33 +129,8 @@ router.delete('/delete/:productId', verify, async (req, res) => {
 		}
 	} catch (err) {
 		res.status(400).json({
-			results: null,
-			message: 'Failed to get data'
-		});
-	}
-});
-
-router.put('/displayProducts/:adminId/:productId', verify, async (req, res) => {
-	try {
-		const updates = req.body;
-		const options = { new: true };
-
-		const adminExist = await User.findOne({ _id: req.params.adminId });
-		if (!adminExist) {
-			return res.status(400).json({ results: null, message: 'Admin is not exist' });
-		}
-		if (adminExist.role !== 'admin') {
-			return res.status(400).json({ results: null, message: 'User is not an admin' });
-		} else {
-			res.json({
-				results: await Product.findByIdAndUpdate(req.params.productId, updates, options),
-				message: 'Above products can be displayed'
-			});
-		}
-	} catch (err) {
-		res.status(400).json({
-			results: null,
-			message: 'Failed to get data'
+			results: err,
+			message: err.message
 		});
 	}
 });
