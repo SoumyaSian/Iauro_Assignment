@@ -33,7 +33,7 @@ Check version of the Node using
 4. Refer/change the data in the \.env file 
 
   ```sh
-  DB_CONNECT = mongodb+srv://user_24:vyJgYPbLcm8rO848@cluster0.gh8rd.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+  DB_CONNECT = mongodb://0.0.0.0:27017/myecomapp
   PORT = 3000
   ACCESS_TOKEN_SECRET = xwertyuihgfdsxcvbnmxdfghcnrt67yuikhgfdrt6t78uicfdsertyuikhgtredfgh
    
@@ -247,21 +247,4 @@ Response
     "message": "User has deleted his product successfully"
 }
 ```
-### Display Product
-```js
-PUT /api/product/displayProducts/603de64aad713220280a6acc/603e2423b173dc0e3ccb1729 HTTP/1.1
-Host: localhost:3000
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDNkMTJmMjgzYjYyZTEyNmM0NDdmMWUiLCJpYXQiOjE2MTQ2NTA0NjR9.bA2c4B80TsArN2_LbbjK3mOMTpXJzLmaJw46scwZkQU
-Content-Type: application/json
-Content-Length: 181
 
-{
-            "isDisplay":true,
-            "name": "Saree",
-            "price": 2000,
-            "details": "silkSaree",
-            "addedBy": "603df1debffff4136cd361a3"
-}
-```
-
-Above all the api in the project
