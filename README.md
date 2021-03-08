@@ -1,13 +1,16 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 This project has User and Admin account. User can sign up and sign in account. The project as JWT autherization. The project will display all the products added my user and admin.
-Only one admin has all the authority to add/edit/delete Users and add/edit/delete products. Users can add/edit/delete only the products added by them. 
+Only one admin has all the authority to add/edit/delete Users and add/edit/delete products. Users can add/edit/delete only the products added by them.
+
 
 ### Built With
-
 * [Node JS](https://nodejs.org/en/)
 * [Express JS](https://expressjs.com/)
 * [MongoDB](https://www.mongodb.com/)
+* JWT for Authorization
+* Role Based APIs
+
 
 <!-- GETTING STARTED -->
 ## Getting Started
