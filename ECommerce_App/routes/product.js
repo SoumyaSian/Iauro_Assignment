@@ -66,6 +66,12 @@ router.put('/update/:productId', verify, async (req, res) => {
 			});
 
 		const productDetails = await Product.findById(req.params.productId);
+		if (!productDetails) {
+			return res.status(400).json({
+				results: null,
+				message: 'Product Not Found'
+			});
+		}
 		if (userExist.role === 'admin') {
 			res.json({
 				results: await Product.findByIdAndUpdate(req.params.productId, updates, options),
@@ -107,6 +113,12 @@ router.delete('/delete/:productId', verify, async (req, res) => {
 
 		const productDetails = await Product.findById(req.params.productId);
 
+		if (!productDetails) {
+			return res.status(400).json({
+				results: null,
+				message: 'Product Not Found'
+			});
+		}
 		if (userExist.role === 'admin') {
 			const removedProduct = await Product.remove(productDetails);
 			res.json({

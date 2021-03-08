@@ -3,12 +3,21 @@ const verify = require('../routes/verifyToken');
 const User = require('../model/user');
 
 //Only admin can delete the userDetails
-router.delete('/deletUser/:userId', verify, async (req, res) => {
+router.delete('/deleteUser/:userId', verify, async (req, res) => {
 	try {
 		const adminExist = await User.findOne({ _id: req.body.adminId });
 		if (!adminExist) {
 			return res.status(400).json({ results: null, message: 'Admin is not exist' });
 		}
+
+		const userDetails = await User.findById(req.params.userId);
+		if (!userDetails) {
+			return res.status(400).json({
+				results: null,
+				message: 'User Not Found'
+			});
+		}
+
 		if (adminExist.role !== 'admin') {
 			return res.status(400).json({ results: null, message: 'User is not an admin' });
 		} else {
@@ -31,6 +40,14 @@ router.put('/updateUser/:userId/:adminId', verify, async (req, res) => {
 	try {
 		const updates = req.body;
 		const options = { new: true };
+
+		const userDetails = await User.findById(req.params.userId);
+		if (!userDetails) {
+			return res.status(400).json({
+				results: null,
+				message: 'User Not Found'
+			});
+		}
 
 		const adminExist = await User.findOne({ _id: req.params.adminId });
 		if (!adminExist) {
